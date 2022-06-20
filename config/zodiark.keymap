@@ -13,7 +13,6 @@
 #define NUMNAV 1 
 #define ARROW 2 
 #define FKEY 3
-
 / {
     keymap {
         compatible = "zmk,keymap";
