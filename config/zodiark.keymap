@@ -12,6 +12,8 @@
 #define DEFAULT 0
 #define NUMNAV 1 
 #define ARROW 2 
+#define FUNCTION 3 
+
 / {
     keymap {
         compatible = "zmk,keymap";
@@ -25,10 +27,10 @@
 // | CTRL  | ALT | GUI | MENU | LOWER|     SPACE     | ENTER | | ENTER |    SPACE     | RAISE| LEFT  | DOWN  |  UP   | RIGHT |
             bindings = <
 &kp ESC    &kp N1   &kp N2   &kp N3      &kp N4      &kp N5                                                                                &kp N6    &kp N7     &kp N8     &kp N9     &kp N0     &kp DEL
-&kp TAB    &kp Q    &kp W    &kp E       &kp R       &kp T             &mwh SCROLL_UP                                        &kp MINUS     &kp Y     &kp U      &kp I      &kp O      &kp P      &mo 2
-&to 1      &kp A    &kp S    &kp D       &kp F       &kp G             &mkp MCLK                                             &kp EQUAL     &kp SEMI  &kp H      &kp J      &kp K      &kp L      &kp LALT
-&kp CAPS   &kp Z    &kp X    &kp C       &kp V       &mwh SCROLL_DOWN  &mkp LCLK   &mkp RCLK                     &kp F1      &kp F2        &kp FSLH  &kp B      &kp N      &kp M      &kp SQT    &kp RET 
-&kp HOME   &kp END  &kp LBKT  &kp RBKT                &kp LALT           &kp LSHFT   &kp RET                     &kp LCTRL   &kp SPACE     &kp BSPC  &kp COMMA  &kp DOT    &kp PG_UP  &kp PG_DN
+&kp TAB    &kp Q    &kp W    &kp E       &kp R       &kp T             &mwh SCROLL_UP                                        &kp MINUS     &kp Y     &kp U      &kp I      &kp O      &kp P      &kp BSPC
+&mo 2      &kp A    &kp S    &kp D       &kp F       &kp G             &mkp MCLK                                             &kp EQUAL     &kp SEMI  &kp H      &kp J      &kp K      &kp L      &kp LALT
+&kp CAPS   &kp Z    &kp X    &kp C       &kp V       &mwh SCROLL_DOWN  &mkp LCLK   &mkp RCLK                     &kp F1      &kp F2        &kp FSLH  &kp B      &kp N      &kp M      &kp DOT    &kp RET 
+&kp HOME   &kp END  &kp LBKT  &kp RBKT                &kp LALT           &kp LSHFT   &kp RET                     &kp LCTRL   &kp SPACE     &kp BSPC  &kp SQT    &kp COMMA  &kp PG_UP  &kp PG_DN
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -36,27 +38,32 @@
 
         NUMNAV_layer {
             bindings = <
-&trans        &kp HOME        &kp END         &kp PG_UP     &kp PG_DN           &kp F5                                                                        &kp F6             &kp FSLH       &kp LS(F8)    &kp LS(MINUS)  &kp EQUAL      &kp DEL
-&trans        &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT     &mwh SCROLL_DOWN  &mwh SCROLL_UP                                  &trans      &kp PAUSE_BREAK    &kp KP_N7      &kp KP_N8     &kp KP_N9      &kp F12        &trans
-&to 0         &kp LEFT        &kp DOWN        &kp UP        &kp RIGHT           &trans            &mkp MCLK                                       &trans      &kp PG_UP          &kp KP_N4      &kp KP_N5     &kp KP_N6      &kp LS(EQUAL)  &trans
-&trans        &kp LC(Z)       &kp LC(X)       &kp LC(C)     &kp LC(V)           &kp LC(Y)         &mkp LCLK    &mkp RCLK               &trans     &trans      &kp PG_DN          &kp KP_N1      &kp KP_N2     &kp KP_N3      &trans         &trans
-&trans        &trans          &trans          &trans                            &trans            &trans       &trans                  &trans     &trans      &trans             &kp KP_N0      &kp KP_DOT    &kp KP_ENTER   &trans
+&trans        &kp F1          &kp F2          &kp F3        &kp F4              &kp F5                                                                        &kp LS(F10)  &kp FSLH       &kp LS(F8)    &kp LS(MINUS)  &kp EQUAL      &kp DEL
+&trans        &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT     &mwh SCROLL_UP    &kp F6                                          &trans      &kp BSLH     &kp KP_N7      &kp KP_N8     &kp KP_N9      &kp F12        &trans
+&to 0         &kp LEFT        &kp DOWN        &kp UP        &kp RIGHT           &mwh SCROLL_DOWN  &mkp MCLK                                       &trans      &trans       &kp KP_N4      &kp KP_N5     &kp KP_N6      &kp LS(EQUAL)  &trans
+&trans        &kp LC(Z)       &kp LC(X)       &kp LC(C)     &kp LC(V)           &kp LC(Y)         &mkp LCLK    &mkp RCLK               &trans     &trans      &trans       &kp KP_N1      &kp KP_N2     &kp KP_N3      &trans         &trans
+&trans        &trans          &trans          &trans                            &trans            &trans       &trans                  &trans     &trans      &trans       &kp KP_N0      &trans        &trans         &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
 
         ARROW_layer {
-// ------------------------------------------------------------------------------------------------------------
-// |BTCLR  | BT1 | BT2 |  BT3 |  BT4 |  BT5 |                                  |      |       |       |      |       | RESET |
-// |       |     |     |      |      |      |        |                 |       |      |       |       |      |       |BLOADER|
-// |       |     |     |      |      |      |        |                 |       |      |       |       |      |       |       |
-// |       |     |     |      |      |      |        |       | |       |       |      |       |       |      |       |       |
-// |       |     |     |      |      |               |       | |       |              |       |       |      |       |       |
-            bindings = <
+           bindings = <
 &bt BT_CLR  &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2  &bt BT_SEL 3   &bt BT_SEL 4                                                    &trans  &trans  &trans  &trans  &trans  &reset
-&trans      &trans         &trans         &trans        &trans         &trans      &trans                                      &trans  &trans  &trans  &trans  &trans  &trans  &bootloader
-&trans      &trans         &trans         &trans        &trans         &trans      &trans                                      &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans      &to 1          &trans         &trans        &trans         &trans      &trans                                      &trans  &trans  &trans  &trans  &trans  &trans  &bootloader
+&trans      &to 3          &trans         &trans        &trans         &trans      &trans                                      &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans      &trans         &trans         &trans        &trans         &trans      &trans    &trans                 &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans      &trans         &trans         &trans        &trans         &trans      &trans    &trans                 &trans     &trans  &trans  &trans  &trans  &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+        };
+                FUNCTION_layer {
+           bindings = <
+&trans      &kp F1         &kp F2         &kp F3        &kp F4         &kp F5                                                          &kp F7  &kp F8  &kp F9  &kp F10 &kp F11 &kp F12
+&trans      &reset         &trans         &trans        &trans         &trans      &trans                                      &kp F6  &trans  &trans  &trans  &trans  &trans  &trans
+&to 0       &trans         &trans         &trans        &trans         &trans      &trans                                      &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans      &trans         &trans         &trans        &trans         &trans      &trans    &trans                 &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans      &trans         &trans         &trans        &trans         &trans      &trans    &trans                 &trans     &trans  &trans  &trans  &trans  &trans
             >;
