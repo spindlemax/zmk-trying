@@ -12,7 +12,7 @@
 #define DEFAULT 0
 #define NUMNAV 1 
 #define ARROW 2 
-#define FUNCTION 3 
+#define FKEY 3
 
 / {
     keymap {
@@ -59,7 +59,7 @@
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
-                FUNCTION_layer {
+                FKEY_layer {
            bindings = <
 &trans      &kp F1         &kp F2         &kp F3        &kp F4         &kp F5                                                          &kp F7  &kp F8  &kp F9  &kp F10    &kp F11    &kp F12
 &trans      &reset         &trans         &trans        &trans         &trans      &trans                                      &kp F6  &trans  &trans  &trans  &trans     &trans     &trans
